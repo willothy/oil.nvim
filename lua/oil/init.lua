@@ -624,7 +624,10 @@ M.select = function(opts, callback)
         vim.api.nvim_set_current_win(preview_win)
         cmd = "buffer"
       else
-        if opts.tab then
+        if opts.win then
+          vim.api.nvim_set_current_win(opts.win)
+          cmd = "buffer"
+        elseif opts.tab then
           vim.cmd.tabnew({ mods = mods })
           cmd = "buffer"
         elseif opts.split then
